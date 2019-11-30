@@ -1,0 +1,32 @@
+{% extends 'portfolio/baseformularios.html'%}
+{% block title %}Calificacion{% endblock %}
+{% block header %}
+    <header class="title">
+        <h1>Administrador </h1>
+    </header>
+    
+    <div class="container">
+        <header class="header">
+            <h1>Nombre Usuario</h1>
+            <h2><a class="a" href="{% url 'admin' %}"> regresar </a></h2>
+            <h2><a class="newPelicula" href="{% url 'nueva_pelicula' %}"> Nueva Pelicula</a></h2>
+        </header>
+        {% endblock %}
+{% block content %}
+
+<table>
+        <tr>
+                <th>Calificacion</th><th>Estado</th><th>Acciones</th>
+        </tr>
+        {% for calificacion in calificaciones %}
+        <tr> 
+                <td>{{calificacion.calificacion}}</td>
+                <td>{{calificacion.estatus }}</td>
+                <td><a href="">Editar</a> <a href="">Borrar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+                
+         
+    
+{% endblock %}

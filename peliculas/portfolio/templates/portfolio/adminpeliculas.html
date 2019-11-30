@@ -1,0 +1,36 @@
+{% extends 'portfolio/baseformularios.html'%}
+{% block title %}Peliculas{% endblock %}
+{% block header %}
+    <header class="title">
+        <h1>Administrador </h1>
+    </header>
+    
+    <div class="container">
+        <header class="header">
+            <h1>Nombre Usuario</h1>
+            <h2><a class="a" href="{% url 'admin' %}"> regresar </a></h2>
+            <h2><a class="newPelicula" href="{% url 'nueva_pelicula' %}"> Nueva Pelicula</a></h2>
+        </header>
+        {% endblock %}
+{% block content %}
+
+<table>
+        <tr>
+                <th>Titulo</th><th>Descripcion</th><th>Categoria</th><th>Actores</th><th>Director</th><th>Calificacion</th><th>Acciones</th>
+        </tr>
+        {% for pelicula in peliculas %}
+        <tr> 
+                <td>{{pelicula.titulo}}</td>
+                <td>{{pelicula.descripcion}}</td>
+                <td>{{pelicula.Categoria_idCategoria}}</td>
+                <td>{{pelicula.TiposPersonas_idTiposPersonas}}</td>
+                <td>{{pelicula.Personas_idPersonas}}</td>
+                <td>{{pelicula.calificaciones_idcalificaciones}}</td>
+                <td><a href="">Editar</a> <a href="">Borrar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+                
+         
+    
+{% endblock %}

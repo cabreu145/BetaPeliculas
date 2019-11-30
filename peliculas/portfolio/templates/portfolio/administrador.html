@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'core/css/admin.css' %}">
+    <title>Administrador</title>
+</head>
+<body>
+    <header class="title">
+        <h1>Administrador </h1>
+    </header>
+    <div class="container">
+        <header class="header">
+            <h1>Nombre Usuario</h1>
+            <h2  ><a class="a" href="{% url 'home' %}"> Salir </a></h2>
+        </header>
+        <main class=" content">
+            <article   class="article">
+                <a href="{% url 'admin_usuario' %}" >Usuarios</a>
+                
+                   
+
+            </article>
+            <article class="article">
+                    <a href="{% url 'admin_permisos' %}">Permisos</a>
+                
+                    
+    
+            </article>
+            <article class="article">
+                    
+                    <a href="{% url 'admin_calif' %}">Calificaciones</a>
+                    
+                
+                    
+
+            </article>
+            <article class="article">
+                    
+                    <a href="{% url 'admin_cat' %}">Categorias</a>
+                
+                    
+
+            </article>
+            <article class="article">
+                    
+                    <a href="{% url 'admin_persona' %}">Personas</a>
+                
+            </article>
+            <article class="article">
+                    
+                    <a href="{% url 'admin_pelicula' %}">Peliculas</a>
+                
+                    
+
+            </article>
+        </main>
+        <aside class="sideber">
+            <div>
+                <img class="uno" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSZ38EnTM9bNTbtxQBcjc9AJyssmNjO1ssJulnhz5d48FgxeEle" alt="">
+                
+            </div>
+            <div>
+                    <img class="dos" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToDw2ZRHqB2biO386mbHtJU1mK5dYPWI_yUWLlnQILKIxEhzdP" alt="">
+                    
+            </div>
+            <div>
+                    <img class="tres"  src="{% static 'core/img/escudo.png' %}" alt="">
+                    
+                    
+            </div>
+        </aside>
+
+        <div class="related-post">
+            
+        </div>
+        <div class="related-post">
+                
+        </div>
+        <div class="related-post">
+                
+        </div>
+        <div class="related-post">
+                
+        </div>
+        <div class="related-post">
+                
+        </div>
+
+        <footer class="footer">
+            <div class="f">
+            <h4>
+                <a class="icon-twitter"href="https://twitter.com/cabreu145"></a>
+                <a href="https://github.com/cabreu145" class="icon-github"></a></h4>
+            <p class="sign">Design with <i class="❤">❤</i> by @cabreu145</p>
+            </div>
+
+        </footer>
+            
+    </div>
+
+    
+</body>
+</html>

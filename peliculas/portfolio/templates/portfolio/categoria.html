@@ -1,0 +1,15 @@
+{% extends 'portfolio/baseformularios.html'%}
+{% block title %}Categoría{% endblock %}
+{% block content %}
+<table>
+    <tr>
+            <th>Categoria Pelicula</th><th>Acciones</th>
+    </tr>
+    {% for categoria in categorias %}
+    <tr> 
+            <td>{{categoria.categoria}}</td>
+            <td><a href="">Editar</a> <a href="">Borrar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

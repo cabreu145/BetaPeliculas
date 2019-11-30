@@ -1,0 +1,19 @@
+{% extends 'portfolio/baseformularios.html'%}
+{% block title %}Peliculas{% endblock %}
+{% block content %}
+
+<form action="" method="get" class="formularioPelicula">
+        <p>Titulo: <input type="text"  size="40"></p>
+        <p>Descripcion: <input type="text" size="40"></p>
+        <p>Categoría: <input type="text"  size="40"></p>
+        <p>Actores: <input type="text"  size="40"></p>
+        <p>Director: <input type="text"  size="40"></p>
+        <p>Calififcación: <input type="number"  min="0.0"></p>
+        <p>
+          <input type="submit" value="Enviar">
+          <input type="reset" value="Borrar">
+        </p>
+      </form>
+
+
+{% endblock %}
