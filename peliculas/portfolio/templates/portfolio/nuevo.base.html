@@ -1,0 +1,15 @@
+{% extends 'portfolio/baseformularios.html'%}
+{% block title %}Crear Usuario{% endblock %}
+{% block content %}
+<form method="post" novalidate id="form_new">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <button type="submit" class="btn btn-success" id="btnlog">Crear Usuario</button>
+        
+      </form>
+      <div>
+            <a  href="{% url 'home' %}" id="back"> Regresar </a>
+            </div>
+
+
+{% endblock %}

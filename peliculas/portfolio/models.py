@@ -100,15 +100,15 @@ class Peliculas(models.Model):
     idpeliculas = models.AutoField(db_column='idPeliculas', primary_key=True)  # Field name made lowercase.
     titulo=models.CharField(max_length=45, db_column='titulo')
     fecha = models.DateField(db_column='FechaEstreno', blank=True, null=True)  # Field name made lowercase.
-    Categoria_idCategoria = models.ForeignKey(Categorias, models.DO_NOTHING, db_column='Categoria_idCategoria')  # Field name made lowercase.
-    calificaciones_idcalificaciones = models.ForeignKey(Calificaciones, models.DO_NOTHING, db_column='Calificaciones_idCalificaciones')  # Field name made lowercase.
-    Personas_idPersonas = models.ForeignKey(Personas, models.DO_NOTHING, db_column='personas_idpersonas', related_name='+')  # Field name made lowercase.
-    TiposPersonas_idTiposPersonas = models.ForeignKey(Personas, models.DO_NOTHING, db_column='TiposPersonas_idTiposPersonas')  # Field name made lowercase.
+    Categoria_idCategoria = models.ForeignKey(Categorias, models.DO_NOTHING, db_column='Categoria_idCategoria',verbose_name='Categoría')  # Field name made lowercase.
+    calificaciones_idcalificaciones = models.ForeignKey(Calificaciones, models.DO_NOTHING, db_column='Calificaciones_idCalificaciones',verbose_name='Calificaciones')  # Field name made lowercase.
+    Personas_idPersonas = models.ForeignKey(Personas, models.DO_NOTHING, db_column='personas_idpersonas', related_name='+' ,verbose_name='Director')  # Field name made lowercase.
+    TiposPersonas_idTiposPersonas = models.ForeignKey(Personas, models.DO_NOTHING, db_column='TiposPersonas_idTiposPersonas',verbose_name='Actor')  # Field name made lowercase.
     descripcion = models.TextField(blank=True, null=True)
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
     tags = models.TextField(blank=True, null=True)
-    prioridad = models.IntegerField()
+    prioridad = models.IntegerField(default=0)
     
 
     class Meta:

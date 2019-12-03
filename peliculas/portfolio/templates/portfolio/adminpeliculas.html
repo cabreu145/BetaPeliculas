@@ -9,12 +9,13 @@
         <header class="header">
             <h1>Nombre Usuario</h1>
             <h2><a class="a" href="{% url 'admin' %}"> regresar </a></h2>
-            <h2><a class="newPelicula" href="{% url 'nueva_pelicula' %}"> Nueva Pelicula</a></h2>
+            
         </header>
         {% endblock %}
 {% block content %}
 
 <table>
+        <h2><a class="newPelicula" href="{% url 'nueva_pelicula' %}"> Nueva Pelicula</a></h2>
         <tr>
                 <th>Titulo</th><th>Descripcion</th><th>Categoria</th><th>Actores</th><th>Director</th><th>Calificacion</th><th>Acciones</th>
         </tr>

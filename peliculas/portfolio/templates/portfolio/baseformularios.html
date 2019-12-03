@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" href="{% static 'core/css/formularios.css' %}">
+    
     <title>{% block title %}{% endblock %}| Administrador</title>
 </head>
-<body>
+<body onload="FbotonOn()" >
     {% block header %}
     <header class="title">
         <h1>Administrador </h1>
@@ -21,32 +23,39 @@
         </header>
         {% endblock %}
         <main class=" content">
+                {% block content %} 
+
+                <table id="table">
+                    <div><a href="{% url 'nuevoUser' %}">Crear Usuario</a></div>
+                    <tr>
+                            <th>Nombre de Usuario</th><th>Estado</th><th>Acciones</th>
+                    </tr>
+                    {% for usuario in usuarios %}
+         
+    
+                    <tr> 
+                            <td>{{usuario.username}}</td>
+                            
+                            <td id="botonOn" > {{ usuario.is_staff }}</td>
+                    
+                            <td><a href="{% url 'editarUser' %}">Editar</a> <a href="{% url 'eliminarUser' %}">Borrar</a></td>
+                    </tr>
+                    
+                    {% endfor %}
+                    
+                    
+                </table>
             
-            <article  class="article">
-                    {% block content %} 
+            
 
-                    <table>
-                        <tr>
-                                <th>Nombre de Usuario</th><th>Estado</th><th>Acciones</th>
-                        </tr>
-                        {% for usuario in usuarios %}
-                        <tr> 
-                                <td>{{usuario.username}}</td>
-                                <td>{{usuario.is_active }}</td>
-                                <td><a href="">Editar</a> <a href="">Borrar</a></td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                
-                
+                    
+                    {% endblock %}
 
-                        
-                        {% endblock %}
                    
                 
                    
 
-            </article>
+    
             
             
         </main>
@@ -81,9 +90,21 @@
             </div>
 
         </footer>
+        
+ 
+
             
     </div>
-
     
+    <script>
+
+            function FbotonOn() {
+              var uno = document.getElementById('botonOn');
+              if (uno.innerText == 'True') 
+                      uno.innerText = 'Tiene Permisos';
+              else uno.innerText = 'No tiene permisos'; 
+            }
+            
+            </script>
 </body>
 </html>

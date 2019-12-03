@@ -25,12 +25,15 @@ urlpatterns = [
     path('pelicula/', core_views.pelicula, name="pelicula"),
     path('admin', portfolio_views.administrador, name="admin"),
     path('admin/usuario', portfolio_views.adminusuario, name="admin_usuario"),
+    path('admin/usuario/nuevo', portfolio_views.adminusuarionuevo, name="nuevoUser"),
+    path('admin/usuario/editar', portfolio_views.adminusuarioeditar, name="editarUser"),
+    path('admin/usuario/eliminar', portfolio_views.adminusuarioeliminar, name="eliminarUser"),
     path('admin/permiso', portfolio_views.adminpermiso, name="admin_permisos"),
     path('admin/calificacion', portfolio_views.admincalificacion, name="admin_calif"),
     path('admin/categoria', portfolio_views.admincategoria, name="admin_cat"),
     path('admin/personas', portfolio_views.adminpersonas, name="admin_persona"),
     path('admin/pelicula', portfolio_views.adminpelicula, name="admin_pelicula"),
-    path('admin/pelicula/nueva', portfolio_views.adminpeliculanew, name="nueva_pelicula"),
+    path('admin/pelicula/nueva', portfolio_views.adminpeliculanew.as_view(), name="nueva_pelicula"),
     path('lock/', admin.site.urls),
 ]
 
