@@ -9,7 +9,7 @@
         <header class="header">
             <h1>{{ user }}</h1>
             <h2><a class="a" href="{% url 'admin' %}"> regresar </a></h2>
-            <h2><a class="newPelicula" href="{% url 'nueva_pelicula' %}"> Nueva Calificacion</a></h2>
+            
         </header>
         {% endblock %}
 {% block content %}
@@ -31,6 +31,9 @@
         </tr>
         {% endfor %}
         </tbody>
+        <tfoot>
+                <h2><a class="newPelicula" href="{% url 'nueva_pelicula' %}"> Nueva Calificacion</a></h2>
+        </tfoot>
         
         
     </table>
