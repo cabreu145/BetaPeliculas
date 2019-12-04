@@ -19,6 +19,8 @@ from django.views.generic import ListView, DetailView, View
 from django.views.generic.edit import (CreateView, UpdateView, DeleteView, )
 from django.views import View
 from django.urls import reverse_lazy
+
+from django.core.paginator import Paginator
 # Create your views here.
 
 
@@ -63,7 +65,11 @@ def adminpermiso(request):
     return render(request, "portfolio/permiso.html")
 
 def admincalificacion(request):
-    calificaciones = Calificaciones.objects.all()
+    calificaciones_List = Calificaciones.objects.all()
+    paginator = Paginator(calificaciones_List,5)
+
+    page = request.GET.get('page')
+    calificaciones = paginator.get_page(page)
     
     return render(request, "portfolio/calificacion.html",{'calificaciones':calificaciones})
 
