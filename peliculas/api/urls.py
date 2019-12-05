@@ -8,6 +8,7 @@ router.register('categorias', views.CategoriasList)
 router.register('personajes', views.PersonajesList)
 router.register('elencos', views.ElencosList)
 router.register('personas', views.PersonasList)
+router.register('tipos_personas', views.TipospersonasList)
 
 urlpatterns = [
     path('peliculas/', include(router.urls)),

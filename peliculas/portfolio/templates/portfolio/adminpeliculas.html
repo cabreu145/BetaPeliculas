@@ -27,7 +27,8 @@
                 <td>{{pelicula.TiposPersonas_idTiposPersonas}}</td>
                 <td>{{pelicula.Personas_idPersonas}}</td>
                 <td>{{pelicula.calificaciones_idcalificaciones}}</td>
-                <td><a href="">Editar</a> <a href="">Borrar</a></td>
+                <td><a href="{% url 'edit_pelicula' pelicula.idpeliculas %}">Editar</a> <a href="{% url 'eli_pelicula' pelicula.idpeliculas %}">Borrar</a></td>
+                
         </tr>
         {% endfor %}
     </table>

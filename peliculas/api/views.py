@@ -23,3 +23,7 @@ class ElencosList(viewsets.ModelViewSet):
 class PersonasList(viewsets.ModelViewSet):
     queryset = Personas.objects.all()
     serializer_class = PersonasSerializer
+
+class TipospersonasList(viewsets.ModelViewSet):
+    queryset = Tipospersonas.objects.all()
+    serializer_class = TipospersonasSerializer

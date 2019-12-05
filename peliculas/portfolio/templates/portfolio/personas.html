@@ -1,5 +1,63 @@
 {% extends 'portfolio/baseformularios.html'%}
 {% block title %}Personas{% endblock %}
+{% block header %}
+    <header class="title">
+        <h1>Administrador </h1>
+    </header>
+    
+    <div class="container">
+        <header class="header">
+            <h1>{{ user }}</h1>
+            <h2><a class="a" href="{% url 'admin' %}"> regresar </a></h2>
+            
+        </header>
+        {% endblock %}
 {% block content %}
-<h1>Personas</h1>
+
+<table id="myTable">
+        <thead>
+                <tr>
+                        <th>Persona</th><th>Tipo de Persona</th><th>Acciones</th>
+                </tr>
+        </thead>
+        <tbody >
+            
+        
+        {% for persona in personas %}
+        <tr> 
+                <td>{{persona.persona }}</td>
+                <td>{{persona.tipospersonas_idTiposPersonas}}</td>
+                 <td><a href="{% url 'personaditar' persona.idpersona %}">Editar </a><a href="{% url 'eli_persona' persona.idpersona%}"> Borrar</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        
+        <tfoot>
+                <h2><a class="newPelicula" href="{% url 'nueva_persona' %}"> Nueva Persona</a></h2>
+        </tfoot>
+        
+        
+    </table>
+    <div class="pagination">
+            <span class="step-links">
+                {% if calificaciones.has_previous %}
+                    <a href="?page=1">&laquo; Primero</a>
+                    <a href="?page={{ calificaciones.previous_page_number }}">Anterior</a>
+                {% endif %}
+        
+                <span class="current">
+                    Pagina {{ calificaciones.number }} de {{ calificaciones.paginator.num_pages }}.
+                </span>
+        
+                {% if calificaciones.has_next %}
+                    <a href="?page={{ calificaciones.next_page_number }}">Siguiente</a>
+                    <a href="?page={{ calificaciones.paginator.num_pages }}">Ultimo &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    
+    
+          
+         
+    
 {% endblock %}

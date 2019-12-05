@@ -1,10 +1,10 @@
 {% extends 'portfolio/baseformularios.html'%}
-{% block title %}Eliminar Usuario{% endblock %}
+{% block title %}Editar Pelicula{% endblock %}
 {% block content %}
 <form method="post" novalidate id="form_new">
         {% csrf_token %}
-        ¿ Seguro que quiere eliminar el usuario   " {{ object.username}} " ?
-        <button type="submit" class="btn btn-success" id="btnlog">Eliminar Usuario</button>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success" id="btnlog">Actualizar Pelicula</button>
         
       </form>
       <div>
