@@ -96,6 +96,25 @@ class Calificaciones(models.Model):
     def __str__(self):
         return self.calificacion
 
+class Elenco(models.Model):
+    idelenco = models.IntegerField(primary_key=True)
+    personas_idpersonas = models.ForeignKey('Personas', models.DO_NOTHING, db_column='Personas_idPersonas')  # Field name made lowercase.
+    personajes_idpersonajes = models.ForeignKey('Personajes', models.DO_NOTHING, db_column='personajes_idpersonajes')
+
+    class Meta:
+        managed = False
+        db_table = 'elenco'
+        unique_together = (('personas_idpersonas', 'personajes_idpersonajes'),)
+
+class Personajes(models.Model):
+    idpersonajes = models.IntegerField(primary_key=True)
+    personaje = models.CharField(max_length=45, blank=True, null=True)
+    estatus = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'personajes' 
+
 class Peliculas(models.Model):
     idpeliculas = models.AutoField(db_column='idPeliculas', primary_key=True)  # Field name made lowercase.
     titulo=models.CharField(max_length=45, db_column='titulo')
@@ -109,7 +128,7 @@ class Peliculas(models.Model):
     actualizado = models.DateTimeField(auto_now=True)
     tags = models.TextField(blank=True, null=True)
     prioridad = models.IntegerField(default=0)
-    
+    #cast = models.ManyToManyField(Elenco)
 
     class Meta:
         managed = False
