@@ -30,7 +30,7 @@ class Tipospersonas(models.Model):
     estatus = models.IntegerField()
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
-    prioridad = models.IntegerField()
+    prioridad = models.IntegerField(default=0)
     
 
     class Meta:
@@ -46,7 +46,7 @@ class Tipospersonas(models.Model):
 class Personas(models.Model):
     idpersona = models.AutoField(db_column='idPersonas', primary_key=True)  # Field name made lowercase.
     persona = models.CharField(max_length=45, blank=True, null=True)
-    tipospersonas_idTiposPersonas = models.ForeignKey('Tipospersonas', models.DO_NOTHING, db_column='TiposPersonas_idTiposPersonas')  # Field name made lowercase.
+    tipospersonas_idTiposPersonas = models.ForeignKey('Tipospersonas', models.DO_NOTHING, db_column='TiposPersonas_idTiposPersonas', verbose_name = "Tipo de Persona")  # Field name made lowercase.
     estatus = models.IntegerField()
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
@@ -67,7 +67,7 @@ class Categorias(models.Model):
     estatus = models.IntegerField()
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
-    prioridad = models.IntegerField()
+    prioridad = models.IntegerField(default=0)
 
     class Meta:
         managed = False
@@ -85,7 +85,7 @@ class Calificaciones(models.Model):
     estatus = models.IntegerField()
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
-    prioridad = models.IntegerField()
+    prioridad = models.IntegerField(default=0)
 
     class Meta:
         managed = False

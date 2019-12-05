@@ -27,12 +27,13 @@
         <tr> 
                 <td>{{calificacion.calificacion|upper }}</td>
                 <td>{{calificacion.estatus }}</td>
-                <td><a href="">Editar</a> <a href="">Borrar</a></td>
+                <td><a href="{% url 'editarcalif' calificacion.idcalificaciones %}">Editar</a> <a href="{% url 'eliminarcalif' calificacion.idcalificaciones%}">Borrar</a></td>
         </tr>
         {% endfor %}
         </tbody>
+        
         <tfoot>
-                <h2><a class="newPelicula" href="{% url 'nueva_pelicula' %}"> Nueva Calificacion</a></h2>
+                <h2><a class="newPelicula" href="{% url 'calificacionnew' %}"> Nueva Calificacion</a></h2>
         </tfoot>
         
         

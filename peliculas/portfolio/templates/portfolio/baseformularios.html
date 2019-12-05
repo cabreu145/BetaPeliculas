@@ -38,7 +38,7 @@
                             
                             <td id="botonOn" > {{ usuario.is_staff }}</td>
                     
-                            <td><a href="{% url 'editarUser' %}">Editar</a> <a href="{% url 'eliminarUser' %}">Borrar</a></td>
+                            <td><a href="{% url 'updates' usuario.id %}">Editar</a> <a href="{% url 'eliminarUser' usuario.id %}">Borrar</a></td>
                     </tr>
                     
                     {% endfor %}

@@ -1,5 +1,5 @@
 {% extends 'portfolio/baseformularios.html'%}
-{% block title %}Permisos{% endblock %}
+{% block title %}Permiso{% endblock %}
 {% block header %}
     <header class="title">
         <h1>Administrador </h1>
@@ -9,7 +9,7 @@
         <header class="header">
             <h1>{{ user }}</h1>
             <h2><a class="a" href="{% url 'admin' %}"> regresar </a></h2>
-            <h2><a class="newPelicula" href="{% url 'nueva_pelicula' %}"> Nuevo Permiso </a></h2>
+            
         </header>
         {% endblock %}
 {% block content %}
@@ -17,20 +17,23 @@
 <table id="myTable">
         <thead>
                 <tr>
-                        <th>Calificacion</th><th>Estado</th><th>Acciones</th>
+                        <th>Permiso</th><th>Estado</th><th>Acciones</th>
                 </tr>
         </thead>
         <tbody >
             
         
-        {% for calificacion in calificaciones %}
+        {% for permiso in permisos %}
         <tr> 
-                <td>{{calificacion.calificacion|upper }}</td>
+                <td>{{permiso.permiso.permission.view_group|upper }}</td>
                 <td>{{calificacion.estatus }}</td>
                 <td><a href="">Editar</a> <a href="">Borrar</a></td>
         </tr>
         {% endfor %}
         </tbody>
+        <tfoot>
+                <h2><a class="newPelicula" href="{% url 'nueva_pelicula' %}"> Nueva Calificacion</a></h2>
+        </tfoot>
         
         
     </table>
@@ -50,6 +53,7 @@
                     <a href="?page={{ calificaciones.paginator.num_pages }}">Ultimo &raquo;</a>
                 {% endif %}
             </span>
+            
         </div>
     
     
@@ -57,3 +61,5 @@
          
     
 {% endblock %}
+
+

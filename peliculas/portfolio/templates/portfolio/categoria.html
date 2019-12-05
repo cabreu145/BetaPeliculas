@@ -1,15 +1,39 @@
 {% extends 'portfolio/baseformularios.html'%}
 {% block title %}Categoría{% endblock %}
+
+{% block header %}
+    <header class="title">
+        <h1>Administrador </h1>
+    </header>
+    
+    <div class="container">
+        <header class="header">
+            <h1>{{ user }}</h1>
+            <h2><a class="a" href="{% url 'admin' %}"> regresar </a></h2>
+            
+        </header>
+        {% endblock %}
 {% block content %}
 <table>
+<thead>
     <tr>
-            <th>Categoria Pelicula</th><th>Acciones</th>
+            <th>Categoria Pelicula</th><th>Estado</th><th>Acciones</th>
     </tr>
+</thead>
+<tbody >
     {% for categoria in categorias %}
     <tr> 
             <td>{{categoria.categoria}}</td>
-            <td><a href="">Editar</a> <a href="">Borrar</a></td>
+            <td>{{categoria.estatus }}</td>
+            <td><a href="{% url 'cateditar' categoria.idcategoria %}">Editar</a> <a href="{% url 'cateli' categoria.idcategoria %}">Borrar</a></td>
     </tr>
+    
+                
+        
     {% endfor %}
+</tbody>
+<tfoot>
+                <h2><a href="{% url 'catnew'%}"> Nueva Categoria</a></h2>
+</tfoot>
 </table>
 {% endblock %}
