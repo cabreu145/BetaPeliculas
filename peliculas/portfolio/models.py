@@ -102,6 +102,8 @@ class Elenco(models.Model):
     personas_idpersonas = models.ForeignKey('Personas', models.DO_NOTHING, db_column='Personas_idPersonas')  # Field name made lowercase.
     personajes_idpersonajes = models.ForeignKey('Personajes', models.DO_NOTHING, db_column='personajes_idpersonajes')
     img = models.CharField(max_length=256,null=True)
+    creado = models.DateTimeField(auto_now_add=True)
+    actualizado = models.DateTimeField(auto_now=True)
 
     class Meta:
         
@@ -115,6 +117,8 @@ class Personajes(models.Model):
     idpersonajes = models.AutoField(db_column='idpersonajes', primary_key=True)
     personaje = models.CharField(max_length=45, blank=True, null=True)
     estatus = models.IntegerField(blank=True, null=True)
+    creado = models.DateTimeField(auto_now_add=True)
+    actualizado = models.DateTimeField(auto_now=True)
 
     class Meta:
         
@@ -132,10 +136,13 @@ class Peliculas(models.Model):
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
     tags = models.TextField(blank=True, null=True)
-    prioridad = models.IntegerField(default=0)
+    duracion = models.IntegerField(default=0)
     cast = models.ManyToManyField(Elenco)
     img = models.CharField(max_length=256,null=True)
+    banner = models.CharField(max_length=256,null=True)
+    logo = models.CharField(max_length=256,null=True)
     Personas_idPersonas = models.ForeignKey(Personas, models.DO_NOTHING,verbose_name='Director',null=True) 
+
 
     class Meta:
         

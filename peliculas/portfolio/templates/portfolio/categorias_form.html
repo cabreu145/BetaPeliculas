@@ -1,0 +1,21 @@
+{% extends 'portfolio/baseformularios.html'%}
+{% block title %}Categorias{% endblock %}
+{% block content %}
+
+<form method="post"  enctype="multipart/form-data">{% csrf_token %}
+            
+    
+        
+  {{form.as_table}}                    
+ 
+  
+  
+
+  
+  <button type="submit" class="btn btn-sm btn-primary btn-flat">Aceptar</button>
+  <a href="{% url 'admin_pelicula' %}" class="btn btn-sm btn-danger btn-flat" >
+          <i class="fas fa-sync-alt" ></i>   Cancelar</a> 
+</form>
+
+
+{% endblock %}

@@ -14,7 +14,15 @@ class NewUserForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")
+        fields = ("first_name","last_name","username","password1","password2","email", "is_superuser", "is_staff")
+        labels = {
+            
+            'is_superuser': ('Administrador'),
+            'is_staff"': ('Editor'),
+        }
+
+
+        #fields = ("first_name","last_name","username","password1","password2","email", "is_superuser", "is_staff")
 
     def save(self, commit=True):
         user = super(NewUserForm, self).save(commit=False)
@@ -33,10 +41,39 @@ class FormNota(forms.ModelForm): #Primer formulario contiene todos los fields de
             'titulo' ,
             'Categoria_idCategoria',
             'calificaciones_idcalificaciones',
+            'cast',
             'descripcion',
             'tags',
+            'img'
             
         ]
 
-   
-       
+class FormCali(forms.ModelForm):
+    class Meta:
+        model = Calificaciones
+        fields = ['calificacion','estatus',]
+        exclude = ['idcalificaciones','creado', 'actualizado']
+
+class FormCat(forms.ModelForm):
+    class Meta:
+        model = Categorias
+        fields = ['categoria', 'estatus']
+        exclude = ['idcategoria','creado', 'actualizado']
+
+class Formper(forms.ModelForm):
+    class Meta:
+        model = Personas
+        fields = ['persona', 'tipospersonas_idTiposPersonas','estatus','img',]
+        exclude = ['idpersona','creado', 'actualizado']
+
+class Formpersonaje(forms.ModelForm):
+    class Meta:
+        model = Personajes
+        fields = ['personaje','estatus',]
+        exclude = ['idpersonajes','creado', 'actualizado']
+
+class Formelenco(forms.ModelForm):
+    class Meta:
+        model = Elenco
+        fields = ['personas_idpersonas', 'personajes_idpersonajes', 'img']
+        exclude = ['idelenco','creado', 'actualizado']

@@ -1,5 +1,65 @@
 {% extends 'portfolio/baseformularios.html'%}
-{% block title %}Permisos{% endblock %}
+{% block title %}Personajes{% endblock %}
+{% block header %}
+    <header class="title">
+        <h1>Administrador </h1>
+    </header>
+    
+    <div class="container">
+        <header class="header">
+            <h1>{{ user }}</h1>
+            <h2><a class="a" href="{% url 'admin' %}"> regresar </a></h2>
+            
+        </header>
+        {% endblock %}
 {% block content %}
-<h1>permisos</h1>
+
+<table id="myTable">
+        <thead>
+                <tr>
+                        <th>Personaje</th><th>Estado</th><th>Acciones</th>
+                </tr>
+        </thead>
+        <tbody >
+            
+        
+        {% for personaje in personajes %}
+        <tr> 
+                <td>{{personaje.personaje }}</td>
+                <td>{{personaje.estatus }}</td>
+                <td><a href="{% url 'personajeedit' personaje.idpersonajes %}">Editar </a><a href="{% url 'eliminarpersonaje' personaje.idpersonajes %}">Borrar</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+                <h2><a class="newPelicula" href="{% url 'personajenew' %}"> Nuevo Personaje</a></h2>
+        </tfoot>
+        
+        
+    </table>
+    <div class="pagination">
+            <span class="step-links">
+                {% if personajes.has_previous %}
+                    <a href="?page=1">&laquo; Primero</a>
+                    <a href="?page={{ personajes.previous_page_number }}">Anterior</a>
+                {% endif %}
+        
+                <span class="current">
+                    Pagina {{ personajes.number }} de {{ personajes.paginator.num_pages }}.
+                </span>
+        
+                {% if personajes.has_next %}
+                    <a href="?page={{ personajes.next_page_number }}">Siguiente</a>
+                    <a href="?page={{ personajes.paginator.num_pages }}">Ultimo &raquo;</a>
+                {% endif %}
+            </span>
+            
+        </div>
+    
+    
+          
+         
+    
 {% endblock %}
+
+

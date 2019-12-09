@@ -14,7 +14,7 @@
     </header>
     <div class="container">
         <header class="header">
-            <h1>Nombre Usuario</h1>
+            <h1>{{ user }}</h1>
             <h2  ><a class="a" href="{% url 'home' %}"> Salir </a></h2>
         </header>
         <main class=" content">
@@ -25,7 +25,13 @@
 
             </article>
             <article class="article">
-                    <a href="{% url 'admin_permisos' %}">Permisos</a>
+                    <a href="{% url 'admin_permisos' %}">Personajes</a>
+                
+                    
+    
+            </article>
+            <article class="article">
+                    <a href="{% url 'admin_cast' %}">Cast</a>
                 
                     
     
