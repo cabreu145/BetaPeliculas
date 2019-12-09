@@ -17,7 +17,7 @@
 
 <header class="header">
   <div class="contenedor">
-    <img class="logo" src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/thor_lob_log_03.png" alt="">
+    <img class="logo" src="{{ object.logo }}" alt="">
     <span class="icon-menu" id="btn-menu"></span>
     <nav class="nav" id="nav">
       <ul class="menu">
@@ -27,7 +27,7 @@
   </div>
 </header>
 <div class="banner">
- <img src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/thor_lob_mas_hlf_01_3.jpg" alt="">
+ <img src="{{ object.banner }}" alt="">
   <div class="contenedor">
     <h2 class="banner__titulo"></h2>
     <p class="banner__txt"></p>
@@ -38,56 +38,40 @@
     <section class="info">
       <article class="info__columna">
         <img src="https://s31.postimg.org/9sgn9p4qz/img1.jpg" alt="" class="info__img">
-        <h2 class="info__titulo">Calificacion</h2>
-        <p class="info__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum aut, incidunt aperiam dicta totam cumque.</p>
+        <h2 class="info__titulo">{{ object.titulo }}</h2>
+        <h3 class="info__titulo2">Calificacion: {{ object.calificaciones_idcalificaciones.calificacion }}</h3>
+        <img src="{{ object.img }}" alt="">
+        <h1 class="calificacion"></h1>
       </article>
       <article class="info__columna">
         <img src="https://s31.postimg.org/9sgn9p4qz/img1.jpg" alt="" class="info__img">
         <h2 class="info__titulo">Resumen</h2>
-        <p class="info__txt">Expedita totam, minima praesentium suscipit excepturi ducimus repellat harum ab, inventore neque cum! Nostrum, dicta!</p>
+        <p class="info__txt">{{ object.descripcion }}</p>
       </article>
       <article class="info__columna">
         <img src="https://s31.postimg.org/9sgn9p4qz/img1.jpg" alt="" class="info__img">
         <h2 class="info__titulo">Wiki</h2>
-        <p class="info__txt">Director:</p>
-        <p class="info__txt">Anio:</p>
-        <p class="info__txt">Duracion:</p>
+        <p class="info__txt">Director: {{ object.Personas_idPersonas.persona }}</p>
+        <p class="info__txt">Año: {{ object.fecha }}</p>
+        <p class="info__txt">Duracion: {{ object.duracion }} minutos</p>
       </article>
     </section>
     <section class="cursos">
       <h2 class="section__titulo">Reparto</h2>
-      <div class="cursos__columna">
-        <img src="https://terrigen-cdn-dev.marvel.com/content/prod/1x/004tho_ons_crd_03.jpg" alt="" class="cursos__img">
-        <div class="cursos__descripcion">
-          <h2 class="cursos__titulo">THOR ODINSON</h2>
-          <div class="cursos__txt">Actor</div>
-        </div>
-      </div>
-      <div class="cursos__columna">
-        <img src="https://s32.postimg.org/3ygwxrcud/img2.jpg" alt="" class="cursos__img">
-        <div class="cursos__descripcion">
-          <h2 class="cursos__titulo">Heroe/villano</h2>
-          <div class="cursos__txt">Accusantium rem quia doloribus soluta ullam pariatur alias, quas dolorum.</div>
-        </div>
-      </div>
-      <div class="cursos__columna">
-        <img src="https://s32.postimg.org/3ygwxrcud/img2.jpg" alt="" class="cursos__img">
-        <div class="cursos__descripcion">
-          <h2 class="cursos__titulo">Heroe/villano</h2>
-          <div class="cursos__txt">Voluptates aspernatur magnam possimus natus, et nemo maxime sed vitae!</div>
-        </div>
-      </div>
-      <div class="cursos__columna">
-        <img src="https://s32.postimg.org/3ygwxrcud/img2.jpg" alt="" class="cursos__img">
-        <div class="cursos__descripcion">
-          <h2 class="cursos__titulo">Heroe/villano</h2>
-          <div class="cursos__txt">Nulla, cumque sunt laudantium blanditiis deserunt, error dolores vero iure.</div>
-        </div>
-      </div>
-    </section>
-    
+    </section>  
   </div>
 </main>
+  <div class="container">
+    <div class="catalogo">
+      {% for object in object.cast.all %}
+        <div class="container">
+          <img src="{{ object.personas_idpersonas.img }}" alt="" class="cursos__img">
+          <h2 class="cursos__titulo">{{ object.personas_idpersonas.persona }}</h2>
+          <div class="cursos__txt">{{ object.personajes_idpersonajes.personaje }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 <footer class="footer">
   <div class="contenedor">
     <div class="social">
