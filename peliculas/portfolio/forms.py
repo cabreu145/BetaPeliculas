@@ -33,8 +33,6 @@ class FormNota(forms.ModelForm): #Primer formulario contiene todos los fields de
             'titulo' ,
             'Categoria_idCategoria',
             'calificaciones_idcalificaciones',
-            'Personas_idPersonas',
-            'TiposPersonas_idTiposPersonas',
             'descripcion',
             'tags',
             

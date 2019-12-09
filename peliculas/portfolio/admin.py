@@ -34,11 +34,9 @@ class CalificacionesDisplay(MultiDBModelAdmin):
 
     def calificacion(self, obj):
         return obj.calificacion
-    def prioridad(self, obj):
-        return obj.prioridad
     
 
-    list_display = ['calificacion', 'prioridad',]
+    list_display = ['calificacion']
     calificacion.short_description = 'Calificacion'
     
 
@@ -89,10 +87,6 @@ class PeliculasDisplay(MultiDBModelAdmin):
         return obj.titulo
     def fecha(self, obj):
         return obj.fecha
-    def persona(self, obj):
-        return obj.Personas_idPersonas
-    def tipo_persona(self, obj):
-        return obj.TiposPersonas_idTiposPersonas
     def categoria(self, obj):
         return obj.Categoria_idCategoria
     def calificacion(self, obj):
@@ -101,12 +95,10 @@ class PeliculasDisplay(MultiDBModelAdmin):
 
 
     
-    list_display = ['titulo','fecha', 'persona', 'tipo_persona', 'categoria', 'calificacion',]
+    list_display = ['titulo','fecha', 'categoria', 'calificacion',]
     #list_filter = ('pagina', 'calificacion')
     titulo.short_description = 'Titulo'
     fecha.short_description = 'Fecha Estreno'
-    persona.short_description = 'Persona'
-    tipo_persona.short_description = 'Tipo de Persona'
     categoria.short_description = 'Categoria'
     calificacion.short_description = 'Calificacion'
 
