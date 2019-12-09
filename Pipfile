@@ -11,6 +11,7 @@ pylint = "*"
 pillow = "*"
 pylint-django = "*"
 mysqlclient = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.7"

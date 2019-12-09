@@ -34,11 +34,9 @@ class CalificacionesDisplay(MultiDBModelAdmin):
 
     def calificacion(self, obj):
         return obj.calificacion
-    def prioridad(self, obj):
-        return obj.prioridad
     
 
-    list_display = ['calificacion', 'prioridad',]
+    list_display = ['calificacion']
     calificacion.short_description = 'Calificacion'
     
 
@@ -89,10 +87,6 @@ class PeliculasDisplay(MultiDBModelAdmin):
         return obj.titulo
     def fecha(self, obj):
         return obj.fecha
-    def persona(self, obj):
-        return obj.Personas_idPersonas
-    def tipo_persona(self, obj):
-        return obj.TiposPersonas_idTiposPersonas
     def categoria(self, obj):
         return obj.Categoria_idCategoria
     def calificacion(self, obj):
@@ -101,17 +95,58 @@ class PeliculasDisplay(MultiDBModelAdmin):
 
 
     
-    list_display = ['titulo','fecha', 'persona', 'tipo_persona', 'categoria', 'calificacion',]
+    list_display = ['titulo','fecha', 'categoria', 'calificacion',]
     #list_filter = ('pagina', 'calificacion')
     titulo.short_description = 'Titulo'
     fecha.short_description = 'Fecha Estreno'
-    persona.short_description = 'Persona'
-    tipo_persona.short_description = 'Tipo de Persona'
     categoria.short_description = 'Categoria'
     calificacion.short_description = 'Calificacion'
 
     admin.site.site_header = "Peliculas"
     admin.site.site_title = "Pelicuas"
+
+
+class PersonajesDisplay(MultiDBModelAdmin):
+
+    readonly_fields =('creado', 'actualizado')
+
+    
+
+    def personaje(self, obj):
+        return obj.personaje
+
+    def estatus(self, obj):
+        return obj.estatus
+        
+    
+
+    list_display = ['personaje', 'estatus']
+    personaje.short_description = 'Personaje'
+    
+
+    admin.site.site_header = "Personaje"
+    admin.site.site_title = "Personaje"
+
+class ElencoDisplay(MultiDBModelAdmin):
+    readonly_fields =('creado', 'actualizado')
+
+    def persona(self, obj):
+        return obj.personas_idpersonas
+
+    def personaje(self, obj):
+        return obj.personajes_idpersonajes
+        
+    
+
+    list_display = ['persona', 'personaje']
+    persona.short_description = 'Persona'
+    personaje.short_description = 'Personaje'
+    
+
+    admin.site.site_header = "Elenco"
+    admin.site.site_title = "Elenco"
+
+
 ###################################################################################################
 
 #Registers#########################################################################################
@@ -120,4 +155,6 @@ admin.site.register(Categorias, CategoriasDisplay)
 admin.site.register(Tipospersonas, TipospersonaDisplay)
 admin.site.register(Personas, PersonasDisplay)
 admin.site.register(Peliculas, PeliculasDisplay)
+admin.site.register(Personajes, PersonajesDisplay)
+admin.site.register(Elenco, ElencoDisplay)
 ###################################################################################################

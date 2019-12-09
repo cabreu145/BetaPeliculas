@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'api',
     'portfolio.apps.PortfolioConfig',
-
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'peliculas.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sintesis',
+        'NAME': 'presentacion',
         'USER': 'root', 
         'PASSWORD': 'administrador',
         'HOST': 'localhost',
@@ -111,6 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# REST_FRAMEWORK = {
+#     'PAGE_SIZE': 10
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

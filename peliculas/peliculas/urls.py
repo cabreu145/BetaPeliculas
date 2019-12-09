@@ -14,21 +14,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from core import views as core_views
 from portfolio import views as portfolio_views
-
 from django.conf import settings
+
+from api.views import *
 
 urlpatterns = [
     path('', core_views.home, name="home"),
-    path('pelicula/', core_views.pelicula, name="pelicula"),
+    path('pelicula/<int:pk>/', core_views.pelicula, name="pelicula"),
     path('admin', portfolio_views.administrador, name="admin"),
     path('admin/usuario', portfolio_views.adminusuario, name="admin_usuario"),
     path('admin/usuario/nuevo', portfolio_views.adminusuarionuevo, name="nuevoUser"),
     path('admin/usuario/update/<int:id>/', portfolio_views.adminusuarioeditar.as_view(), name="updates"),
     path('admin/usuario/eliminar/<int:id>/', portfolio_views.adminusuarioeliminar.as_view(), name="eliminarUser"),
-    path('admin/permiso', portfolio_views.adminpermiso, name="admin_permisos"),
+    path('admin/personaje', portfolio_views.adminpersonaje, name="admin_permisos"),
+    path('admin/personaje/nuevo', portfolio_views.personajenew.as_view(), name="personajenew"),
+    path('admin/personaje/editar/<int:id>/', portfolio_views.personajeedit.as_view(), name="personajeedit"),
+    path('admin/personaje/eliminar/<int:id>/', portfolio_views.eliminarpersonaje.as_view(), name="eliminarpersonaje"),
     path('admin/calificacion', portfolio_views.admincalificacion, name="admin_calif"),
     path('admin/calificacion/nuevo', portfolio_views.calificacionnew.as_view(template_name = "portfolio/calificacionesform.html"), name="calificacionnew"),
     path('admin/calificacion/editar/<int:id>/', portfolio_views.calificacionEdit.as_view(), name="editarcalif"),
@@ -45,7 +49,12 @@ urlpatterns = [
     path('admin/pelicula/nueva', portfolio_views.adminpeliculanew.as_view(), name="nueva_pelicula"),
     path('admin/pelicula/update/<int:id>/', portfolio_views.peliculaedit.as_view(), name="edit_pelicula"),
     path('admin/pelicula/eliminar/<int:id>/', portfolio_views.peliculaliminar.as_view(), name="eli_pelicula"),
+    path('admin/elenco', portfolio_views.admin_cast, name="admin_cast"),
+    path('admin/elenco/nuevo', portfolio_views.castnew.as_view(), name="castnew"),
+    path('admin/elenco/update/<int:id>/', portfolio_views.castedit.as_view(), name="castedit"),
+    path('admin/elenco/eliminar/<int:id>/', portfolio_views.eliminarcast.as_view(), name="eliminarcast"),
     path('lock/', admin.site.urls),
+    path('api/', include('api.urls')),
 ]
 
 if settings.DEBUG:

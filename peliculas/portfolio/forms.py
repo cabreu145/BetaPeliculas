@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import (ModelForm, TextInput)
-from .models import *
+from models import *
 from django import forms
 from django.contrib.auth.forms import ( UserCreationForm, AuthenticationForm,)
 from django.contrib.auth.models import User
@@ -41,10 +41,10 @@ class FormNota(forms.ModelForm): #Primer formulario contiene todos los fields de
             'titulo' ,
             'Categoria_idCategoria',
             'calificaciones_idcalificaciones',
-            'Personas_idPersonas',
-            'TiposPersonas_idTiposPersonas',
+            'cast',
             'descripcion',
             'tags',
+            'img'
             
         ]
 
@@ -52,20 +52,28 @@ class FormCali(forms.ModelForm):
     class Meta:
         model = Calificaciones
         fields = ['calificacion','estatus',]
-        exclude = ['prioridad','idcalificaciones','creado', 'actualizado']
+        exclude = ['idcalificaciones','creado', 'actualizado']
 
 class FormCat(forms.ModelForm):
     class Meta:
         model = Categorias
         fields = ['categoria', 'estatus']
-        exclude = ['prioridad','idcategoria','creado', 'actualizado']
+        exclude = ['idcategoria','creado', 'actualizado']
 
 class Formper(forms.ModelForm):
     class Meta:
         model = Personas
-        fields = ['persona', 'tipospersonas_idTiposPersonas','estatus',]
+        fields = ['persona', 'tipospersonas_idTiposPersonas','estatus','img',]
         exclude = ['idpersona','creado', 'actualizado']
-        
 
-    
-       
+class Formpersonaje(forms.ModelForm):
+    class Meta:
+        model = Personajes
+        fields = ['personaje','estatus',]
+        exclude = ['idpersonajes','creado', 'actualizado']
+
+class Formelenco(forms.ModelForm):
+    class Meta:
+        model = Elenco
+        fields = ['personas_idpersonas', 'personajes_idpersonajes', 'img']
+        exclude = ['idelenco','creado', 'actualizado']
