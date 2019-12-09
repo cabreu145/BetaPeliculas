@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'peliculas.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lunespresentacion',
+        'NAME': 'presentacion',
         'USER': 'root', 
         'PASSWORD': 'administrador',
         'HOST': 'localhost',
