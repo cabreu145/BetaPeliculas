@@ -65,3 +65,15 @@ class Formper(forms.ModelForm):
         model = Personas
         fields = ['persona', 'tipospersonas_idTiposPersonas','estatus','img',]
         exclude = ['idpersona','creado', 'actualizado']
+
+class Formpersonaje(forms.ModelForm):
+    class Meta:
+        model = Personajes
+        fields = ['personaje','estatus',]
+        exclude = ['idpersonajes','creado', 'actualizado']
+
+class Formelenco(forms.ModelForm):
+    class Meta:
+        model = Elenco
+        fields = ['personas_idpersonas', 'personajes_idpersonajes', 'img']
+        exclude = ['idelenco','creado', 'actualizado']

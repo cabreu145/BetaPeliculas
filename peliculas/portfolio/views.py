@@ -28,6 +28,9 @@ from django.urls import reverse
 def administrador(request):
     return render(request, "portfolio/administrador.html")
 
+
+##########################USUARIO/PERMISOS######################################################################################
+
 def adminusuario(request):
     usuarios = User.objects.all()
     return render(request, "portfolio/baseformularios.html",{'usuarios':usuarios})
@@ -88,16 +91,7 @@ def adminusuarionuevo(request):
 
     return render(request, "portfolio/nuevo.base.html", context)
 
-def adminpermiso(request):
-    permisos_List = Permission.objects.all()
-    paginator = Paginator(permisos_List,5)
-
-    page = request.GET.get('page')
-    permisos = paginator.get_page(page)
-    
-    return render(request, "portfolio/permiso.html",{'permisos':permisos})
-
-
+##########################CALIFIACIONES######################################################################################
 def admincalificacion(request):
     calificaciones_List = Calificaciones.objects.all()
     paginator = Paginator(calificaciones_List,5)
@@ -171,7 +165,7 @@ class calificacionliminar(DeleteView):
     
 
     
-
+##########################CATEGORIAS######################################################################################
 
 
 def admincategoria(request):
@@ -244,7 +238,7 @@ class categorialiminar(DeleteView):
         messages.success (self.request, (success_message))       
         return reverse('admin_cat') # Redireccionamos a la vista principal 'leer' """
 
-
+##########################PERSONAS######################################################################################
 def adminpersonas(request):
     personas_List = Personas.objects.all()
     paginator = Paginator(personas_List,5)
@@ -307,7 +301,7 @@ class personasiminar(DeleteView):
         return reverse('admin_pelicula') # Redireccionamos a la vista principal 'leer' """
 
     
-
+##########################PELICULA######################################################################################
 def adminpelicula(request):
     peliculas_List = Peliculas.objects.all()
     paginator = Paginator(peliculas_List,5)
@@ -373,8 +367,154 @@ class peliculaliminar(DeleteView):
         messages.success (self.request, (success_message))       
         return reverse('admin_pelicula') # Redireccionamos a la vista principal 'leer' """
 
+
+##########################PERSONAJES######################################################################################
+def adminpersonaje(request):
+
+    personaje_List = Personajes.objects.all()
+    paginator = Paginator(personaje_List ,5)
+
+    page = request.GET.get('page')
+    personajes = paginator.get_page(page)
+    
+    return render(request, "portfolio/permiso.html",{'personajes':personajes})
+
+
+    
+   
+
+class personajenew(CreateView):
+
+    model = Personajes
+    form_class = Formpersonaje
+    success_url = reverse_lazy('admin_permisos')
+
+def crudpersonaje(request):
+    
+    
+    if request.method == 'POST':
+        form = FormNota(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('admin_permisos')
+    else:
+        form = FormNota()
+
+    context ={'form' : form}
+    return render(request, 'portfolio/personajes_form.html', context)
+
+
+class personajeedit(UpdateView):
+    template_name = 'portfolio/Updatepersonaje.html'
+    model = Personajes
+    form_class = Formpersonaje
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Personajes, idpersonajes=id_)
+
+    def get_success_url(self):
+        return reverse_lazy('admin_permisos')
+
+
+
+class eliminarpersonaje(DeleteView):
+
+    template_name = 'portfolio/eliminarPersonajes.html'
+    model = Personajes
+    form_class = Formpersonaje
+
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Personajes, idpersonajes=id_)
+
+    
+ 
+    # Redireccionamos a la página principal luego de eliminar un registro o postre
+    def get_success_url(self): 
+        success_message = 'Usuario Eliminada Correctamente !' # Mostramos este Mensaje luego de Editar un Postre 
+        messages.success (self.request, (success_message))       
+        return reverse('admin_permisos') # Redireccionamos a la vista principal 'leer'
+##########################CAST######################################################################################
+def admin_cast(request):
+
+    cast_List = Elenco.objects.all()
+    paginator = Paginator(cast_List ,5)
+
+    page = request.GET.get('page')
+    casts = paginator.get_page(page)
+    
+    return render(request, "portfolio/cast.html",{'casts':casts})
+
+
     
 
+
+class castnew(CreateView):
+
+    model = Elenco
+    form_class = Formelenco
+    success_url = reverse_lazy('admin_cast')
+
+def crudcast(request):
+    
+    
+    if request.method == 'POST':
+        form = Formelenco(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('admin_cast')
+    else:
+        form = Formelenco()
+
+    context ={'form' : form}
+    return render(request, 'portfolio/cast_form.html', context)
+
+
+class castedit(UpdateView):
+    template_name = 'portfolio/Updateelenco.html'
+    model = Elenco
+    form_class = Formelenco
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Elenco, idelenco=id_)
+
+    def get_success_url(self):
+        return reverse_lazy('admin_cast')
+
+
+
+class eliminarcast(DeleteView):
+
+    template_name = 'portfolio/eliminarCast.html'
+    model = Elenco
+    form_class = Formelenco
+
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Elenco, idelenco=id_)
+
+    
+ 
+    # Redireccionamos a la página principal luego de eliminar un registro o postre
+    def get_success_url(self): 
+        success_message = 'Usuario Eliminada Correctamente !' # Mostramos este Mensaje luego de Editar un Postre 
+        messages.success (self.request, (success_message))       
+        return reverse('admin_cast') # Redireccionamos a la vista principal 'leer'''
+
+
+
+
+
+
+
+
+##########################LOG/OUT######################################################################################
 def logout_def(request):
     if request.method == "POST":
         logout(request)

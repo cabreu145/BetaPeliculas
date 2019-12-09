@@ -1,0 +1,16 @@
+{% extends 'portfolio/baseformularios.html'%}
+{% block title %}Eliminar Personaje{% endblock %}
+{% block content %}
+<form method="post" novalidate id="form_new">
+        {% csrf_token %}
+        ¿ Seguro que quiere eliminar el personaje  " {{ object.personaje}} " ?
+        <button type="submit" class="btn btn-success" id="btnlog">Eliminar</button>
+        
+      </form>
+      <div>
+            <a  href="{% url 'home' %}" id="back"> Regresar </a>
+            </div>
+
+
+
+{% endblock %}
