@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from models import *
+from .models import *
 from django.db.models import Q
 from django.contrib.auth.models import User, Permission, Group
 from django.contrib.auth.decorators import (    
