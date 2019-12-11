@@ -104,6 +104,49 @@ class PeliculasDisplay(MultiDBModelAdmin):
 
     admin.site.site_header = "Peliculas"
     admin.site.site_title = "Pelicuas"
+
+
+class PersonajesDisplay(MultiDBModelAdmin):
+
+    readonly_fields =('creado', 'actualizado')
+
+    
+
+    def personaje(self, obj):
+        return obj.personaje
+
+    def estatus(self, obj):
+        return obj.estatus
+        
+    
+
+    list_display = ['personaje', 'estatus']
+    personaje.short_description = 'Personaje'
+    
+
+    admin.site.site_header = "Personaje"
+    admin.site.site_title = "Personaje"
+
+class ElencoDisplay(MultiDBModelAdmin):
+    readonly_fields =('creado', 'actualizado')
+
+    def persona(self, obj):
+        return obj.personas_idpersonas
+
+    def personaje(self, obj):
+        return obj.personajes_idpersonajes
+        
+    
+
+    list_display = ['persona', 'personaje']
+    persona.short_description = 'Persona'
+    personaje.short_description = 'Personaje'
+    
+
+    admin.site.site_header = "Elenco"
+    admin.site.site_title = "Elenco"
+
+
 ###################################################################################################
 
 #Registers#########################################################################################
@@ -112,4 +155,6 @@ admin.site.register(Categorias, CategoriasDisplay)
 admin.site.register(Tipospersonas, TipospersonaDisplay)
 admin.site.register(Personas, PersonasDisplay)
 admin.site.register(Peliculas, PeliculasDisplay)
+admin.site.register(Personajes, PersonajesDisplay)
+admin.site.register(Elenco, ElencoDisplay)
 ###################################################################################################

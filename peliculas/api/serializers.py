@@ -14,7 +14,8 @@ class PeliculasSerializer(serializers.ModelSerializer):
             'Categoria_idCategoria',
             'descripcion', 
             'cast',
-            'calificaciones_idcalificaciones'
+            'calificaciones_idcalificaciones',
+            'img'
             )
 
 class CategoriasSerializer(serializers.ModelSerializer):

@@ -37,19 +37,19 @@
   <div class="contenedor">
     <section class="info">
       <article class="info__columna">
-        <img src="https://s31.postimg.org/9sgn9p4qz/img1.jpg" alt="" class="info__img">
+        <img src="{{ object.img }}" alt="">
         <h2 class="info__titulo">{{ object.titulo }}</h2>
         <h3 class="info__titulo2">Calificacion: {{ object.calificaciones_idcalificaciones.calificacion }}</h3>
-        <img src="{{ object.img }}" alt="">
+        
         <h1 class="calificacion"></h1>
       </article>
       <article class="info__columna">
-        <img src="https://s31.postimg.org/9sgn9p4qz/img1.jpg" alt="" class="info__img">
+        <img src="https://i.ibb.co/RPfj1nX/guion.png" alt="" class="info__img">
         <h2 class="info__titulo">Resumen</h2>
         <p class="info__txt">{{ object.descripcion }}</p>
       </article>
       <article class="info__columna">
-        <img src="https://s31.postimg.org/9sgn9p4qz/img1.jpg" alt="" class="info__img">
+        <img src="https://i.ibb.co/sRjkH4Q/periodico.png" alt="" class="info__img">
         <h2 class="info__titulo">Wiki</h2>
         <p class="info__txt">Director: {{ object.Personas_idPersonas.persona }}</p>
         <p class="info__txt">Año: {{ object.fecha }}</p>
@@ -64,14 +64,60 @@
   <div class="container">
     <div class="catalogo">
       {% for object in object.cast.all %}
-        <div class="container">
-          <img src="{{ object.personas_idpersonas.img }}" alt="" class="cursos__img">
-          <h2 class="cursos__titulo">{{ object.personas_idpersonas.persona }}</h2>
-          <div class="cursos__txt">{{ object.personajes_idpersonajes.personaje }}</div>
-        </div>
+        <button class="container" onclick="Modal()" id="{{ object.personajes_idpersonajes.personaje }}">
+          <img src="{{ object.img }}" alt="" class="cursos__img" id="{{ object.personajes_idpersonajes.personaje }}">
+          <h2 class="cursos__titulo" id="{{ object.personajes_idpersonajes.personaje }}">{{ object.personas_idpersonas.persona }}</h2>
+          <div class="cursos__txt" id="{{ object.personajes_idpersonajes.personaje }}">{{ object.personajes_idpersonajes.personaje }}</div>
+        </button>
       {% endfor %}
     </div>
   </div>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <div class='modal-content'>
+        <span class='close' onclick="Close()">&times;</span>
+    </div>
+  </div>
+
+<script>
+  var modal = document.getElementById("myModal");
+  function Modal() {
+    var personaje = event.target.id;
+    fetch('http://superstock.herokuapp.com/api/superhumanos')
+    .then((respuesta) => {return respuesta.json();}).then((respuesta) => {
+      for (const index of respuesta) {
+        if (index.personaje_nombre === personaje) {
+          document.getElementById("myModal").innerHTML =+ 
+            "<div id='myModal' class='modal'>"+
+              "<div class='modal-content'>"+
+                "<span class='close' onclick='Close()'>&times;</span>"+
+                "<div>"+
+                    "<h1>"+index.personaje_nombre+"</h1>"+
+                    "<h3>"+index.franquicia+"</h3>"+
+                    "<h2>"+index.personaje_descripcion+"</h2>"+
+                    "<img src='"+"https://static0.cbrimages.com/wordpress/wp-content/uploads/2019/11/dc-10-rarest-batman-comics-what-theyre-worth.jpg"+"' alt=''>"+
+                    //"<img src='"+index.personaje_imagen+"' alt=>"+
+                "</div>"+
+              "</div>"+
+            "</div>";
+          //alert(personaje);
+          modal.style.display = "block";
+        }
+      }   
+    });
+  };
+
+  function Close() {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
 <footer class="footer">
   <div class="contenedor">
     <div class="social">

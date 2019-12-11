@@ -1,0 +1,16 @@
+{% extends 'portfolio/baseformularios.html'%}
+{% block title %}Editar Personaje{% endblock %}
+{% block content %}
+<form method="post" novalidate id="form_new">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success" id="btnlog">Actualizar Personaje</button>
+        
+      </form>
+      <div>
+            <a  href="{% url 'home' %}" id="back"> Regresar </a>
+            </div>
+
+
+
+{% endblock %}

@@ -102,6 +102,8 @@ class Elenco(models.Model):
     personas_idpersonas = models.ForeignKey('Personas', models.DO_NOTHING, db_column='Personas_idPersonas')  # Field name made lowercase.
     personajes_idpersonajes = models.ForeignKey('Personajes', models.DO_NOTHING, db_column='personajes_idpersonajes')
     img = models.CharField(max_length=256,null=True)
+    creado = models.DateTimeField(auto_now_add=True)
+    actualizado = models.DateTimeField(auto_now=True)
 
     class Meta:
         
@@ -114,7 +116,9 @@ class Elenco(models.Model):
 class Personajes(models.Model):
     idpersonajes = models.AutoField(db_column='idpersonajes', primary_key=True)
     personaje = models.CharField(max_length=45, blank=True, null=True)
-    estatus = models.IntegerField(blank=True, null=True)
+    estatus = models.BooleanField()
+    creado = models.DateTimeField(auto_now_add=True)
+    actualizado = models.DateTimeField(auto_now=True)
 
     class Meta:
         
