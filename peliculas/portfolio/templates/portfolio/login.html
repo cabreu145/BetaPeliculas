@@ -1,4 +1,4 @@
-{% load static %}
+ {% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,54 +15,25 @@
     <div class="container">
         <header class="header">
             <h1>{{ user }}</h1>
-            <h2  ><a class="a" href="{% url 'out' %}"> Salir </a></h2>
+            <h2  ><a class="a" href="{% url 'home' %}"> Salir </a></h2>
         </header>
         <main class=" content">
-            <article   class="article">
-                <a href="{% url 'admin_usuario' %}" >Usuarios</a>
+            <article   >
+                <div >
+    
+    
+  <div >
+    <!--<img src="static/img/logo2.png" id="imagenl" >-->
+    <form method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Login</button>
+</form>
                 
                    
 
             </article>
-            <article class="article">
-                    <a href="{% url 'admin_permisos' %}">Personajes</a>
-                
-                    
-    
-            </article>
-            <article class="article">
-                    <a href="{% url 'admin_cast' %}">Cast</a>
-                
-                    
-    
-            </article>
-            <article class="article">
-                    
-                    <a href="{% url 'admin_calif' %}">Calificaciones</a>
-                    
-                
-                    
-
-            </article>
-            <article class="article">
-                    
-                    <a href="{% url 'admin_cat' %}">Categorias</a>
-                
-                    
-
-            </article>
-            <article class="article">
-                    
-                    <a href="{% url 'admin_persona' %}">Personas</a>
-                
-            </article>
-            <article class="article">
-                    
-                    <a href="{% url 'admin_pelicula' %}">Peliculas</a>
-                
-                    
-
-            </article>
+            
         </main>
         <aside class="sideber">
             <div>
@@ -111,3 +82,6 @@
     
 </body>
 </html>
+      
+    
+  

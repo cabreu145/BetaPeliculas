@@ -6,11 +6,12 @@ from django.contrib.auth.decorators import (
     login_required,
     permission_required
 )
+from django.contrib.auth import authenticate
+
 from django.contrib.auth import (
     authenticate,
     get_user_model,
-    login,
-    logout,
+
 )
 from .forms import *
 from django.contrib import messages
@@ -21,21 +22,38 @@ from django.urls import reverse_lazy
 
 from django.core.paginator import Paginator
 from django.urls import reverse
+
+from django.contrib.auth.decorators import (    
+    login_required,
+    
+)
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth import login as do_login
+from django.contrib.auth import logout as do_logout
+
 # Create your views here.
 
 
 
+
 def administrador(request):
+    if not request.user.is_authenticated:
+        return redirect("admin1")
     return render(request, "portfolio/administrador.html")
 
 
 ##########################USUARIO/PERMISOS######################################################################################
 
 def adminusuario(request):
+    if not request.user.is_authenticated:
+        return redirect("admin1")
+
     usuarios = User.objects.all()
     return render(request, "portfolio/baseformularios.html",{'usuarios':usuarios})
 
+
 class adminusuarioeditar(UpdateView):
+    
     template_name = 'portfolio/UpdateUser.html'
     form_class = NewUserForm
 
@@ -48,10 +66,13 @@ class adminusuarioeditar(UpdateView):
     
     def get_success_url(self):
         return reverse_lazy('admin_usuario')
+    
+    
 
 
 
 class adminusuarioeliminar(DeleteView):
+    
     template_name = 'portfolio/eliminar.base.html' 
     model = User
     form_class = NewUserForm
@@ -71,6 +92,9 @@ class adminusuarioeliminar(DeleteView):
     
 
 def adminusuarionuevo(request):
+    if not request.user.is_authenticated:
+        return redirect("admin1")
+
     next = request.GET.get('next')
     form = NewUserForm(request.POST or None)
     if form.is_valid():
@@ -79,7 +103,7 @@ def adminusuarionuevo(request):
         user.set_password(password)
         user.save()
         new_user = authenticate(username=user.username, password=password)
-        login(request, new_user)
+        do_login(request, new_user)
         if next:
             return redirect(next)
         return redirect('/')
@@ -92,7 +116,10 @@ def adminusuarionuevo(request):
     return render(request, "portfolio/nuevo.base.html", context)
 
 ##########################CALIFIACIONES######################################################################################
+
 def admincalificacion(request):
+    if not request.user.is_authenticated:
+        return redirect("admin1")
     calificaciones_List = Calificaciones.objects.all()
     paginator = Paginator(calificaciones_List,5)
 
@@ -169,6 +196,8 @@ class calificacionliminar(DeleteView):
 
 
 def admincategoria(request):
+    if not request.user.is_authenticated:
+        return redirect("admin1")
     categorias_List = Categorias.objects.all()
     paginator = Paginator(categorias_List,5)
 
@@ -227,6 +256,7 @@ class categorialiminar(DeleteView):
     model = Categorias
     form_class = FormCat
 
+    
     def get_object(self):
         id_ = self.kwargs.get("id")
         return get_object_or_404(Categorias, idcategoria=id_)
@@ -239,7 +269,10 @@ class categorialiminar(DeleteView):
         return reverse('admin_cat') # Redireccionamos a la vista principal 'leer' """
 
 ##########################PERSONAS######################################################################################
+
 def adminpersonas(request):
+    if not request.user.is_authenticated:
+        return redirect("admin1")
     personas_List = Personas.objects.all()
     paginator = Paginator(personas_List,5)
 
@@ -302,7 +335,10 @@ class personasiminar(DeleteView):
 
     
 ##########################PELICULA######################################################################################
+
 def adminpelicula(request):
+    if not request.user.is_authenticated:
+        return redirect("admin1")
     peliculas_List = Peliculas.objects.all()
     paginator = Paginator(peliculas_List,5)
 
@@ -369,7 +405,10 @@ class peliculaliminar(DeleteView):
 
 
 ##########################PERSONAJES######################################################################################
+
 def adminpersonaje(request):
+    if not request.user.is_authenticated:
+        return redirect("admin1")
 
     personaje_List = Personajes.objects.all()
     paginator = Paginator(personaje_List ,5)
@@ -438,7 +477,10 @@ class eliminarpersonaje(DeleteView):
         messages.success (self.request, (success_message))       
         return reverse('admin_permisos') # Redireccionamos a la vista principal 'leer'
 ##########################CAST######################################################################################
+
 def admin_cast(request):
+    if not request.user.is_authenticated:
+        return redirect("admin1")
 
     cast_List = Elenco.objects.all()
     paginator = Paginator(cast_List ,5)
@@ -515,29 +557,47 @@ class eliminarcast(DeleteView):
 
 
 ##########################LOG/OUT######################################################################################
-def logout_def(request):
-    if request.method == "POST":
-        logout(request)
-    
-    return redirect("home")
+def logout(request):
+    # Finalizamos la sesión
+    do_logout(request)
+    # Redireccionamos a la portada
+    return redirect('/')
 
-def login_request(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request=request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.info(request, f"Benvenido {username}")
-                return redirect('/')
-            else:
-                messages.error(request, "Usuario o Contraseña invalida")
-        else:
-            messages.error(request, "Usuario o Contraseña invalida")
+
+    if request.user.is_authenticated:
+        return redirect("admin")
+
+      
+def login(request):
+    if  request.user.is_authenticated:
+        return redirect("admin")
+    # Creamos el formulario de autenticación vacío
     form = AuthenticationForm()
-    return render(request = request,
-                    template_name = "signup.html",
-                    context={"form":form})
+    if request.method == "POST":
+        # Añadimos los datos recibidos al formulario
+        form = AuthenticationForm(data=request.POST)
+        # Si el formulario es válido...
+        if form.is_valid():
+            # Recuperamos las credenciales validadas
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            # Verificamos las credenciales del usuario
+            user = authenticate(username=username, password=password)
+
+            # Si existe un usuario con ese nombre y contraseña
+            if user is not None:
+                # Hacemos el login manualmente
+                do_login(request, user)
+                # Y le redireccionamos a la portada
+                return redirect('admin')
+
+    # Si llegamos al final renderizamos el formulario
+    return render(request, "portfolio/login.html", {'form': form})
+    
+    
+
+    
+
+    
     

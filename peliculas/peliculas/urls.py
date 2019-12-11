@@ -18,6 +18,7 @@ from django.urls import include, path
 from core import views as core_views
 from portfolio import views as portfolio_views
 from django.conf import settings
+from django.contrib.auth import views as auth_views
 
 from api.views import *
 
@@ -55,6 +56,8 @@ urlpatterns = [
     path('admin/elenco/eliminar/<int:id>/', portfolio_views.eliminarcast.as_view(), name="eliminarcast"),
     path('lock/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('login', portfolio_views.login, name="admin1"),
+    path('logout', portfolio_views.logout, name="out"),
 ]
 
 if settings.DEBUG:
