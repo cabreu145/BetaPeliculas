@@ -17,14 +17,13 @@
 <table>
         <h2><a class="newPelicula" href="{% url 'nueva_pelicula' %}"> Nueva Pelicula</a></h2>
         <tr>
-                <th>Titulo</th><th>Descripcion</th><th>Categoria</th><th>Actores</th><th>Director</th><th>Calificacion</th><th>Acciones</th>
+                <th>Titulo</th><th>Categoria</th><th>Director</th><th>Calificacion</th><th>Acciones</th>
         </tr>
         {% for pelicula in peliculas %}
         <tr> 
                 <td>{{pelicula.titulo}}</td>
-                <td>{{pelicula.descripcion}}</td>
+                <!-- <td>{{pelicula.descripcion}}</td> -->
                 <td>{{pelicula.Categoria_idCategoria}}</td>
-                <td>{{pelicula.TiposPersonas_idTiposPersonas}}</td>
                 <td>{{pelicula.Personas_idPersonas}}</td>
                 <td>{{pelicula.calificaciones_idcalificaciones}}</td>
                 <td><a href="{% url 'edit_pelicula' pelicula.idpeliculas %}">Editar</a> <a href="{% url 'eli_pelicula' pelicula.idpeliculas %}">Borrar</a></td>

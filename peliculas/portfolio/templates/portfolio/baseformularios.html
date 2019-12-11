@@ -21,9 +21,9 @@
             <h1>{{ user }}</h1>
             <h2  ><a class="a" href="{% url 'admin' %}"> regresar </a></h2>
         </header>
-        {% endblock %}
+    {% endblock %}
         <main class=" content">
-                {% block content %} 
+            {% block content %} 
 
                 <table id="table">
                     <div><a href="{% url 'nuevoUser' %}">Crear Usuario</a></div>
@@ -49,7 +49,7 @@
             
 
                     
-                    {% endblock %}
+            {% endblock %}
 
                    
                 

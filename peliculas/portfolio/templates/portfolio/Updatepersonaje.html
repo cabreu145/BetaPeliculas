@@ -1,16 +1,41 @@
-{% extends 'portfolio/baseformularios.html'%}
-{% block title %}Editar Personaje{% endblock %}
-{% block content %}
-<form method="post" novalidate id="form_new">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success" id="btnlog">Actualizar Personaje</button>
-        
-      </form>
-      <div>
-            <a  href="{% url 'home' %}" id="back"> Regresar </a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Alta Clientes" content="Diseño Responsivo">
+    <title>Personajes</title>
+    <link rel="stylesheet" href="{% static 'core/css/estilo2.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="titulo"><span>Personajes</span> </h1>
+        </header>
+        <div class="area-central">
+            <div class="formulario">
+                <h3>Personaje</h3>
+                <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <p>
+                        <label for="nombre">Personaje: </label>
+                        {{form.personaje}}
+                    </p>
+                    <p>
+                        <label for="nombre">Estatus: </label>
+                        {{form.estatus}}
+                    </p>
+                    <p class="bloque">
+                            <button type="submit" class="btn btn-sm btn-primary btn-flat" id="btnlog">Aceptar</button>
+                            <a href="{% url 'admin_pelicula' %}" class="btn btn-sm btn-danger btn-flat" >
+                              <i class="fas fa-sync-alt" ></i>   Cancelar
+                            </a> 
+                    </p>
+                </form>
             </div>
-
-
-
-{% endblock %}
+            <div class="info-contacto">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

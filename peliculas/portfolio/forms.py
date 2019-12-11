@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import (ModelForm, TextInput)
+from django.forms import (ModelForm, TextInput, DateInput)
 from .models import *
 from django import forms
 from django.contrib.auth.forms import ( UserCreationForm, AuthenticationForm,)
@@ -41,9 +41,11 @@ class FormNota(forms.ModelForm): #Primer formulario contiene todos los fields de
             'titulo' ,
             'Categoria_idCategoria',
             'calificaciones_idcalificaciones',
+            'Personas_idPersonas',
             'cast',
             'descripcion',
             'tags',
+            'duracion',
             'img',
             'logo',
             'banner'

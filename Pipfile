@@ -12,6 +12,7 @@ pillow = "*"
 pylint-django = "*"
 mysqlclient = "*"
 djangorestframework = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.7"

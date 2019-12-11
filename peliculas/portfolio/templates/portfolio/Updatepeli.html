@@ -1,16 +1,81 @@
-{% extends 'portfolio/baseformularios.html'%}
-{% block title %}Editar Pelicula{% endblock %}
-{% block content %}
-<form method="post" novalidate id="form_new">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success" id="btnlog">Actualizar Pelicula</button>
-        
-      </form>
-      <div>
-            <a  href="{% url 'home' %}" id="back"> Regresar </a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Alta Clientes" content="Diseño Responsivo">
+    <title>Peliculas</title>
+    <link rel="stylesheet" href="{% static 'core/css/estilo2.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="titulo"><span>Peliculas</span> </h1>
+        </header>
+        <div class="area-central">
+            <div class="formulario">
+                <h3>Peliculas</h3>
+                <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <p>
+                        <label for="nombre">Fecha: </label>
+                        {{form.fecha}}
+                    </p>
+                    <p>
+                        <label for="nombre">Titulo: </label>
+                        {{form.titulo}}
+                    </p>
+                    <p>
+                        <label for="nombre">Descripcion: </label>
+                        {{form.descripcion}}
+                    </p>
+                    <p>
+                        <label for="nombre">Director: </label>
+                        {{form.Personas_idPersonas}}
+                    </p>
+                    <p>
+                        <label for="nombre">Duracion: </label>
+                        {{form.duracion}}
+                    </p>
+                    <p>
+                        <label for="nombre">Cast: </label>
+                        {{form.cast}}
+                    </p>
+                    <p>
+                        <label for="nombre">Categoria: </label>
+                        {{form.Categoria_idCategoria}}
+                    </p>
+                    <p>
+                        <label for="nombre">Calificacion: </label>
+                        {{form.calificaciones_idcalificaciones}}
+                    </p>
+                    <p>
+                        <label for="nombre">Etiquetas: </label>
+                        {{form.tags}}
+                    </p>
+                    <p>
+                        <label for="nombre">Caratula: </label>
+                        {{form.img}}
+                    </p>
+                    <p>
+                        <label for="nombre">Logo: </label>
+                        {{form.logo}}
+                    </p>
+                    <p>
+                        <label for="nombre">Banner: </label>
+                        {{form.banner}}
+                    </p>
+                    <p class="bloque">
+                            <button type="submit" class="btn btn-sm btn-primary btn-flat" id="btnlog">Actualizar</button>
+                            <a href="{% url 'admin_pelicula' %}" class="btn btn-sm btn-danger btn-flat" >
+                              <i class="fas fa-sync-alt" ></i>   Cancelar
+                            </a> 
+                    </p>
+                </form>
             </div>
-
-
-
-{% endblock %}
+            <div class="info-contacto">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'portfolio/baseformularios.html'%}
+{% block title %}Peliculas{% endblock %}
+{% block content %}
+<form class="formulario" method="post"  enctype="multipart/form-data">{% csrf_token %}
+            
+  <label for="">Fecha: </label>{{form.fecha}} <br>
+  <label for="">Titulo: </label>{{form.titulo}} <br>
+  <label for="">Descripcion:</label><br>{{form.descripcion}} <br>
+  <label for="">Director: </label>{{form.Personas_idPersonas}} <br>
+  <label for="">Duracion:</label><br>{{form.duracion}} <br>
+  <label for="">Cast:</label><br>{{form.cast}} <br>
+  <label for="">Categoria: </label>{{form.Categoria_idCategoria}} <br>
+  <label for="">Calificacion: </label>{{form.calificaciones_idcalificaciones}} <br>
+  <label for="">Etiquetas: </label>{{form.tags}} <br>
+  <label for="">Caratula: </label>{{form.img}} <br>
+  <label for="">Logo: </label>{{form.logo}} <br>
+  <label for="">Banner: </label>{{form.banner}} <br>
+
+  <button type="submit" class="btn btn-sm btn-primary btn-flat">Aceptar</button>
+  <a href="{% url 'admin_pelicula' %}" class="btn btn-sm btn-danger btn-flat" >
+    <i class="fas fa-sync-alt" ></i>   Cancelar
+  </a> 
+</form>
+
+{% endblock %}
